@@ -7,7 +7,7 @@ With this program you can read and convert those S-Parameter files to a Time Dom
 An Example:  
 This circuit consisting of some different impedance transmission lines can be analyzed by a frequency domanin Circuit Analysis program,  
   
-![circuit](images/S2P Test Network Figure.PNG)  
+![images/S2P Test Network Figure.PNG](https://github.com/Hagtronics/S-Parameter-to-TDR-Viewer/blob/main/images/S2P%20Test%20Network%20Figure.PNG))  
   
 To get the TDR view from the S-Parameter file - you can use the program presented here,  
   
