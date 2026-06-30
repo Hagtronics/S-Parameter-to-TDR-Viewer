@@ -1,0 +1,398 @@
+<?xml version='1.0' encoding='utf-8'?>
+<interface version="1.5" author="PygubuDesigner 0.41.4">
+  <project>
+    <settings>
+      <setting id="name">sparam_to_tdr_viewer</setting>
+      <setting id="description">TDR Viewer</setting>
+      <setting id="template">application</setting>
+      <setting id="main_widget">main_window</setting>
+      <setting id="module_namespace" />
+      <setting id="module_name">sparam_to_tdr</setting>
+      <setting id="main_classname">sparam_to_tdr</setting>
+      <setting id="output_dir" />
+      <setting id="builder_namespace">custom_widgets</setting>
+      <setting id="output_dir2" />
+      <setting id="generate_code_onsave">True</setting>
+      <setting id="use_i18n">False</setting>
+      <setting id="all_ids_attributes">False</setting>
+      <setting id="import_tkvariables">True</setting>
+      <setting id="use_ttk_styledefinition_file">False</setting>
+      <setting id="use_window_centering_code">True</setting>
+      <setting id="ttk_style_definition_file" />
+    </settings>
+    <customwidgets />
+    <resources />
+  </project>
+  <object class="tk.Toplevel" id="main_window" named="True">
+    <property name="resizable">none</property>
+    <property name="title" translatable="yes">S Parameter to Time Domain Reflectometry Visualizer</property>
+    <containerlayout manager="grid">
+      <property name="anchor">nw</property>
+    </containerlayout>
+    <child>
+      <object class="ttk.Labelframe" id="fra_infile" named="True">
+        <property name="text" translatable="yes">Input File Selection</property>
+        <property name="width">300</property>
+        <layout manager="grid">
+          <property name="column">0</property>
+          <property name="padx">10</property>
+          <property name="row">0</property>
+          <property name="sticky">ew</property>
+        </layout>
+        <child>
+          <object class="ttk.Button" id="but_select_infile" named="True">
+            <property name="command" type="command" cbtype="simple">process_files</property>
+            <property name="text" translatable="yes">Select File</property>
+            <layout manager="grid">
+              <property name="column">0</property>
+              <property name="padx">10 10</property>
+              <property name="pady">5</property>
+              <property name="row">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="lbl_infile" named="True">
+            <property name="borderwidth">1</property>
+            <property name="justify">left</property>
+            <property name="padding">5</property>
+            <property name="relief">solid</property>
+            <property name="text" translatable="yes">No File Selected...</property>
+            <property name="textvariable">string:v_infile</property>
+            <property name="width">80</property>
+            <layout manager="grid">
+              <property name="column">1</property>
+              <property name="padx">10 10</property>
+              <property name="row">0</property>
+              <property name="sticky">ew</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="lbl_infile_props" named="True">
+            <property name="padding">5</property>
+            <property name="relief">solid</property>
+            <property name="textvariable">string:v_infile_props</property>
+            <property name="width">10</property>
+            <layout manager="grid">
+              <property name="column">1</property>
+              <property name="padx">10</property>
+              <property name="pady">10</property>
+              <property name="row">2</property>
+              <property name="sticky">ew</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="label4">
+            <property name="text" translatable="yes">File Parameters:</property>
+            <layout manager="grid">
+              <property name="column">0</property>
+              <property name="row">2</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Labelframe" id="fra_tdr_type" named="True">
+        <property name="padding">10 10 10 10</property>
+        <property name="text" translatable="yes">TDR Setup</property>
+        <property name="width">300</property>
+        <layout manager="grid">
+          <property name="column">1</property>
+          <property name="padx">10</property>
+          <property name="pady">0</property>
+          <property name="row">0</property>
+          <property name="sticky">ew</property>
+        </layout>
+        <child>
+          <object class="ttk.Radiobutton" id="rad_step" named="True">
+            <property name="command" type="command" cbtype="simple">rad_tdr_type_changed</property>
+            <property name="text" translatable="yes">Low Pass Step</property>
+            <property name="value">tdr_step</property>
+            <property name="variable">string:v_tdr_type</property>
+            <layout manager="grid">
+              <property name="column">0</property>
+              <property name="padx">10 10</property>
+              <property name="row">0</property>
+              <property name="sticky">ew</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Radiobutton" id="rad_impulse" named="True">
+            <property name="command" type="command" cbtype="simple">rad_tdr_type_changed</property>
+            <property name="text" translatable="yes">Low Pass Impulse</property>
+            <property name="value">tdr_impulse</property>
+            <property name="variable">string:v_tdr_type</property>
+            <layout manager="grid">
+              <property name="column">0</property>
+              <property name="padx">10</property>
+              <property name="row">1</property>
+              <property name="sticky">ew</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Radiobutton" id="rad_bandpass" named="True">
+            <property name="command" type="command" cbtype="simple">rad_tdr_type_changed</property>
+            <property name="text" translatable="yes">Bandpass</property>
+            <property name="value">tdr_bandpass</property>
+            <property name="variable">string:v_tdr_type</property>
+            <layout manager="grid">
+              <property name="column">0</property>
+              <property name="padx">10</property>
+              <property name="row">2</property>
+              <property name="sticky">ew</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="label5">
+            <property name="text" translatable="yes">Window</property>
+            <layout manager="grid">
+              <property name="column">1</property>
+              <property name="padx">10</property>
+              <property name="row">0</property>
+              <property name="sticky">ew</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Combobox" id="cbox_window" named="True">
+            <property name="textvariable">string:v_tdr_window</property>
+            <property name="values">Minimum Normal Maximum</property>
+            <layout manager="grid">
+              <property name="column">3</property>
+              <property name="row">0</property>
+              <property name="sticky">ew</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="label6">
+            <property name="text" translatable="yes">Padding</property>
+            <layout manager="grid">
+              <property name="column">1</property>
+              <property name="padx">10</property>
+              <property name="row">2</property>
+              <property name="sticky">ew</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Spinbox" id="sbox_padding" named="True">
+            <property name="command" type="command" cbtype="simple">sb_tdr_padding_changed</property>
+            <property name="from_">0</property>
+            <property name="increment">1000</property>
+            <property name="textvariable">string:v_tdr_padding</property>
+            <property name="to">100000</property>
+            <layout manager="grid">
+              <property name="column">3</property>
+              <property name="row">2</property>
+              <property name="sticky">ew</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Labelframe" id="labelframe3">
+        <property name="padding">10 10</property>
+        <property name="text" translatable="yes">S Parameter Display</property>
+        <layout manager="grid">
+          <property name="column">0</property>
+          <property name="padx">10 10</property>
+          <property name="row">1</property>
+          <property name="sticky">ew</property>
+        </layout>
+        <child>
+          <object class="ttk.Radiobutton" id="rad_s11" named="True">
+            <property name="command" type="command" cbtype="simple">rad_spar_changed</property>
+            <property name="text" translatable="yes">S11</property>
+            <property name="value">s11</property>
+            <property name="variable">string:v_spar_response</property>
+            <property name="width">12</property>
+            <layout manager="grid">
+              <property name="column">0</property>
+              <property name="row">0</property>
+              <property name="sticky">w</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Radiobutton" id="rad_s21" named="True">
+            <property name="command" type="command" cbtype="simple">rad_spar_changed</property>
+            <property name="text" translatable="yes">S21</property>
+            <property name="value">s21</property>
+            <property name="variable">string:v_spar_response</property>
+            <property name="width">12</property>
+            <layout manager="grid">
+              <property name="column">1</property>
+              <property name="row">0</property>
+              <property name="sticky">w</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Radiobutton" id="rad_s12" named="True">
+            <property name="command" type="command" cbtype="simple">rad_spar_changed</property>
+            <property name="text" translatable="yes">S12</property>
+            <property name="value">s12</property>
+            <property name="variable">string:v_spar_response</property>
+            <property name="width">12</property>
+            <layout manager="grid">
+              <property name="column">2</property>
+              <property name="row">0</property>
+              <property name="sticky">w</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Radiobutton" id="rad_s22" named="True">
+            <property name="command" type="command" cbtype="simple">rad_spar_changed</property>
+            <property name="text" translatable="yes">S22</property>
+            <property name="value">s22</property>
+            <property name="variable">string:v_spar_response</property>
+            <property name="width">12</property>
+            <layout manager="grid">
+              <property name="column">3</property>
+              <property name="row">0</property>
+              <property name="sticky">w</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Checkbutton" id="chk_show_gated" named="True">
+            <property name="command" type="command" cbtype="simple">cb_show_gated_response_changed</property>
+            <property name="text" translatable="yes">Show Only Gated Response</property>
+            <property name="variable">string:v_cbox_show_tdr</property>
+            <layout manager="grid">
+              <property name="column">4</property>
+              <property name="row">0</property>
+              <property name="sticky">w</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Labelframe" id="frame_sparam_plot" named="True">
+        <property name="padding">10 10 10 10</property>
+        <property name="text" translatable="yes">S Parameters</property>
+        <layout manager="grid">
+          <property name="column">0</property>
+          <property name="padx">10 5</property>
+          <property name="pady">10 5</property>
+          <property name="row">2</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Labelframe" id="frame_tdr_plot" named="True">
+        <property name="padding">10 10 10 10</property>
+        <property name="text" translatable="yes">TDR</property>
+        <layout manager="grid">
+          <property name="column">1</property>
+          <property name="padx">5 10</property>
+          <property name="pady">10 5</property>
+          <property name="row">2</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Labelframe" id="frame_tdr" named="True">
+        <property name="text" translatable="yes">TDR Gating</property>
+        <layout manager="grid">
+          <property name="column">1</property>
+          <property name="padx">10 10</property>
+          <property name="row">1</property>
+          <property name="sticky">ew</property>
+        </layout>
+        <child>
+          <object class="ttk.Label" id="label1">
+            <property name="anchor">nw</property>
+            <property name="text" translatable="yes">  TDR Gate Start Time:  </property>
+            <layout manager="grid">
+              <property name="column">2</property>
+              <property name="row">0</property>
+              <property name="sticky">ew</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Scale" id="scale_tdr_start_time" named="True">
+            <property name="command" type="command" cbtype="scale">tdr_start_time_changed</property>
+            <property name="from_">0.01</property>
+            <property name="length">200</property>
+            <property name="orient">horizontal</property>
+            <property name="to">0.99</property>
+            <property name="value">0.01</property>
+            <property name="variable">string:v_tdr_gate_start</property>
+            <layout manager="grid">
+              <property name="column">3</property>
+              <property name="padx">0 30</property>
+              <property name="row">0</property>
+              <property name="sticky">ew</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="label2">
+            <property name="justify">right</property>
+            <property name="text" translatable="yes">TDR Gate Stop Time:  </property>
+            <layout manager="grid">
+              <property name="column">4</property>
+              <property name="row">0</property>
+              <property name="sticky">ew</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Scale" id="scale_tdr_stop_time" named="True">
+            <property name="command" type="command" cbtype="scale">tdr_stop_time_changed</property>
+            <property name="from_">0.01</property>
+            <property name="length">200</property>
+            <property name="orient">horizontal</property>
+            <property name="to">0.99</property>
+            <property name="value">0.99</property>
+            <property name="variable">string:v_tdr_gate_stop</property>
+            <layout manager="grid">
+              <property name="column">5</property>
+              <property name="padx">0 5</property>
+              <property name="row">0</property>
+              <property name="sticky">ew</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Checkbutton" id="chk_tdr_enabled" named="True">
+            <property name="command" type="command" cbtype="simple">cb_enable_gating_changed</property>
+            <property name="padding">10</property>
+            <property name="text" translatable="yes">Enable Gating</property>
+            <property name="variable">string:v_tdr_gating</property>
+            <layout manager="grid">
+              <property name="column">0</property>
+              <property name="pady">5 5</property>
+              <property name="row">0</property>
+              <property name="sticky">ew</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="label3">
+            <property name="text" translatable="yes">          </property>
+            <layout manager="grid">
+              <property name="column">1</property>
+              <property name="row">0</property>
+              <property name="sticky">ew</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
