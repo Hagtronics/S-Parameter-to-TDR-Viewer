@@ -1,0 +1,3 @@
+pygubu==0.40
+scikit_rf==1.12.0
+matplotlib==3.10.9
