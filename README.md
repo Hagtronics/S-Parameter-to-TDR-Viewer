@@ -1,4 +1,4 @@
-# S-Parameter-to-TDR-Viewer
+# S-Parameter to TDR Viewer
 A S-Parameter to TDR Viewer using Scikit-rf  
   
 Many Circuit Analysis, EM Solver programs and lower cost Network Anayzers can measure circuits, but can only produce S-Parameter files.  
@@ -23,4 +23,4 @@ See the 'User Guide' for a full walk through of the program.
 # Acknowledgments 
 Thanks to PyGuBu for making building TTKInter GUI's so easy.  
 Thanks to Scikit-rf for doing al the 'heavy lifting' computation here.  
-  
+Thanks always to Matplotlib for making graphics so painless.
