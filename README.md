@@ -13,7 +13,7 @@ To get the TDR view from the S-Parameter file - you can use the program presente
   
 ![analysis](images/overview.jpg)  
   
-See the 'Users Guide' for a full walk through of the program.  
+See the 'User Guide' for a full walk through of the program.  
   
 # Instaling the program,  
 1) Get the code from the src directory.  
