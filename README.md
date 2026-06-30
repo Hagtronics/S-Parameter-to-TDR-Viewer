@@ -13,13 +13,12 @@ To get the TDR view from the S-Parameter file - you can use the program presente
   
 ![analysis](images/overview.jpg)  
   
-See the 'User Guide' for a full walk through of the program.  
-  
 # Installing the program  
 1) Get the code from the src directory.  
 2) Use the 'requirements.txt' file to get the proper python libraries.  
 3) Double Click on the file: 'sparam_to_tdr.py' to run the program.
-
+4) See the 'User Guide' for a full walk through of the program.  
+  
 # Acknowledgments 
   Thanks to [PyGuBu](https://pypi.org/project/pygubu/) for making building TTKInter GUI's so easy.  
   Thanks to [Scikit-rf](https://pypi.org/project/scikit-rf/) for doing all the 'heavy lifting' computation here.    
