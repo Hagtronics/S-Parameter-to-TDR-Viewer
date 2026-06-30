@@ -21,6 +21,6 @@ See the 'User Guide' for a full walk through of the program.
 3) Double Click on the file: 'sparam_to_tdr.py' to run the program.
 
 # Acknowledgments 
-Thanks to PyGuBu for making building TTKInter GUI's so easy.  
+Thanks to PyGuBu for making building TTKInter GUI's so easy. [PyGuBu](https://pypi.org/project/pygubu/)
 Thanks to Scikit-rf for doing al the 'heavy lifting' computation here.  
 Thanks always to Matplotlib for making graphics so painless.
