@@ -175,6 +175,7 @@ class sparam_to_tdr(sparam_to_tdrUI):
         self.replot = True
 
     def rad_tdr_type_changed(self):
+        # tdr_step, tdr_impulse of tdr_bandpass
         self.tdr_type_selected = self.v_tdr_type.get()
         self.replot = True
 
@@ -361,7 +362,10 @@ class sparam_to_tdr(sparam_to_tdrUI):
         # Process data - this code is as per the scikit-rf examples
         y_dat[y_dat ==  1.] =  1. + 1e-12  # solve numerical singularity
         y_dat[y_dat == -1.] = -1. + 1e-12  # solve numerical singularity
-        y_dat = (self.Z0 * (1+y_dat) / (1-y_dat))
+        if self.tdr_type_selected == 'tdr_step':
+            y_dat = (self.Z0 * (1+y_dat) / (1-y_dat))  # Scaled to 50 Ohms
+        else:
+            y_dat = (1+y_dat) / (1-y_dat)   # Unitless
 
         x_dat = x_dat * self.time_scale
 
