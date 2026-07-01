@@ -13,10 +13,15 @@ To get the TDR view from the S-Parameter file - you can use the program presente
   
 ![analysis](images/overview.jpg)  
   
+# Requirements  
+1) Tested on Windows 7, 10 and 11 only.  
+2) Screen resolution of at least 1920 x 1080 (FHD).  
+3) Tested with Python 3.12 and the dependencies listed in the 'requirements.txt' file.  
+     
 # Installing the program  
 1) Get the code from the src directory.  
-2) Use the 'requirements.txt' file to get the proper python libraries.  
-3) Double Click on the file: 'sparam_to_tdr.py' to run the program.
+2) After installing Python 3.12.x, use the 'requirements.txt' file to get the proper python libraries.  
+3) Double Click on the file: 'sparam_to_tdr.py' to run the program.  
 4) See the 'User Guide' for a full walk through of the program.  
   
 # Acknowledgments 
