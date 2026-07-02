@@ -1,1 +1,1 @@
-
+Images used locally.
