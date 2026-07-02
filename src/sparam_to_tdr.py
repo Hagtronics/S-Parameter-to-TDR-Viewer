@@ -31,14 +31,14 @@ PROJECT_UI = PROJECT_PATH / "sparam_to_tdr.ui"
 RESOURCE_PATHS = [PROJECT_PATH]
 
 
-#* ===== Embedded Plots Setup =====
+#$ ===== Embedded Plots Setup =====
 
 PLOT_X_DIM = 11.2   # Used internally to set plot dimensions
 PLOT_Y_DIM = 9      # Used internally to set plot dimensions
 
 # Use 1.0 on 100% scaled displays, or 1.12 on 125% scaled displays.
-TK_SCALE_FACTOR = 1.0
-win_sf = 100
+TK_SCALE_FACTOR = 1.0   # Set default
+win_sf = 100            # Set default
 
 
 # Set the apps DPI awareness (if possible) - This works for Windows only
@@ -48,7 +48,7 @@ try:
 
     # Returns: 100, 125, 150, etc.
     win_sf = ctypes.windll.shcore.GetScaleFactorForDevice(0)
-    print(f'Current Text Scale Factor = {win_sf}.')
+    print(f'Info: Current Text Scale Factor = {win_sf}.')
 except:
     try:
         ctypes.windll.user32.SetProcessDPIAware()
@@ -56,10 +56,14 @@ except:
     except:
         print('Info: DPI Awareness could not be set!')
 
-# Hacky solution for the 'set all text scaling' that is on windows.
+# "Hacky" solution for the 'set all text scaling' that is on windows.
 # Works here for 100 and 125% scaled values.
+if win_sf == 100:
+    TK_SCALE_FACTOR = 1.00
 if win_sf == 125:
     TK_SCALE_FACTOR = 1.12
+else:
+    print(f'Info: Current Windows Text Scale Factor is: {win_sf}.\nThis program only works with Text Scale Factors of 100 and 125% with FHD displays.')
 
 
 # Helper function - Shortens the path for display in a limited size label
@@ -83,7 +87,7 @@ def shorter_path(path, appx_len=20):
      return path
 
 
-#* ===== Main App Class =====
+#$ ===== Main App Class =====
 
 class sparam_to_tdr(sparam_to_tdrUI):
     def __init__(self, master=None):
@@ -172,7 +176,7 @@ class sparam_to_tdr(sparam_to_tdrUI):
         self.ax_tdr.grid('both')
 
 
-    #* ===== TTK UI Functions =====
+    #$ ===== TTK UI Functions =====
     # Had to make this 'homemade' callback - see above
     def cbo_window_changed(self, stuff):
         self.window_selection = ('kaiser', 3)
@@ -198,7 +202,7 @@ class sparam_to_tdr(sparam_to_tdrUI):
         self.replot = True
 
 
-    #* ===== Gating =====
+    #$ ===== Gating =====
     def cb_show_gated_response_changed(self):
         self.show_gated_only = False
 
@@ -232,7 +236,7 @@ class sparam_to_tdr(sparam_to_tdrUI):
         self.replot = True
 
 
-    #* ===== File selection / Manipulation =====
+    #$ ===== File selection / Manipulation =====
     def select_infile(self):
         self.filename = tk.filedialog.askopenfilename(initialdir = "/",
             title = "Select a S2P File",
@@ -265,7 +269,7 @@ class sparam_to_tdr(sparam_to_tdrUI):
             self.network_loaded = False
 
 
-    #* ===== Data File Manipulation =====
+    #$ ===== Data File Manipulation =====
     def extrapolate_frequency(self):
         # Always extrapolate to DC except for Bandpass TDR
         if self.tdr_type_selected != 'tdr_bandpass':
@@ -427,7 +431,7 @@ class sparam_to_tdr(sparam_to_tdrUI):
         self.canvas_tdr.draw()
 
 
-    #* ===== Higher Level App Functions =====
+    #$ ===== Higher Level App Functions =====
     def plot_data(self):
         if self.network_loaded and self.replot:
             #self.process_infile()
@@ -453,7 +457,7 @@ class sparam_to_tdr(sparam_to_tdrUI):
         self.mainwindow.after(50, self.check_replot_state)
 
 
-#* ===== Main App Start Point =====
+#$ ===== Main App Start Point =====
 if __name__ == "__main__":
     app = sparam_to_tdr()
     app.mainwindow.tk.call('tk', 'scaling', TK_SCALE_FACTOR)
